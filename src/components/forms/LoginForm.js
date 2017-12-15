@@ -1,6 +1,7 @@
 import React from 'react';
 import {Form, Button } from 'semantic-ui-react';
 import InlineError from '../messages/InlineError';
+import PropTypes from 'prop-types';
 import Validator from 'validator';
 
 class LoginForm extends React.Component {
@@ -13,6 +14,11 @@ class LoginForm extends React.Component {
     errors: {}
   };
 
+  isValid = (errors) => {
+    if (Object.keys(errors).length === 0 && errors.constructor === Object) return true;
+    return false;
+  };
+
   onChange = e => this.setState({
     data : { ...this.state.data, [e.target.name]: e.target.value}
   });
@@ -20,7 +26,10 @@ class LoginForm extends React.Component {
   onSubmit = () => {
     const errors = this.validate(this.state.data);
     this.setState({errors});
-  }
+    if (this.iobjsValid(errors)) {
+      this.props.submit(this.state.data);
+    }
+  };
 
   validate = (data) => {
     const errors = {};
@@ -34,7 +43,7 @@ class LoginForm extends React.Component {
       errors.password = "Password must have at least 6 characters";
     }
     return errors;
-  }
+  };
 
   render() {
     const {data, errors} = this.state;
@@ -66,7 +75,6 @@ class LoginForm extends React.Component {
           {errors.password && <InlineError text={errors.password} />}
         </Form.Field>
         <Button primary>Login</Button>
-
       </Form>
       <br/>
         <Button primary>Sign Up</Button>
@@ -74,5 +82,9 @@ class LoginForm extends React.Component {
     );
   }
 }
+
+LoginForm.propTypes = {
+  submit: PropTypes.func.isRequired
+};
 
 export default LoginForm;
