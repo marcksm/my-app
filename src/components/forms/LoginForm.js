@@ -26,7 +26,7 @@ class LoginForm extends React.Component {
   onSubmit = () => {
     const errors = this.validate(this.state.data);
     this.setState({errors});
-    if (this.iobjsValid(errors)) {
+    if (this.isValid(errors)) {
       this.props.submit(this.state.data);
     }
   };
