@@ -147,7 +147,6 @@ class SignUpForm extends React.Component {
       </Form>
       <br/>
 
-        <Button primary>Back </Button>
       </div>
     );
   }

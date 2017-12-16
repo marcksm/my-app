@@ -77,7 +77,7 @@ class LoginForm extends React.Component {
         <Button primary>Login</Button>
       </Form>
       <br/>
-        <Button primary>Sign Up</Button>
+      
       </div>
     );
   }
