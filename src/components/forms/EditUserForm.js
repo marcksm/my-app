@@ -7,7 +7,7 @@ import Validator from 'validator';
 //import rrui from 'react-phone-number-input/rrui.css'
 //import rpni from 'react-phone-number-input/style.css'
 
-class SignUpForm extends React.Component {
+class EditUserForm extends React.Component {
   state = {
     data: {
       first_name: '',
@@ -118,8 +118,8 @@ class SignUpForm extends React.Component {
   }
 }
 
-SignUpForm.propTypes = {
+EditUserForm.propTypes = {
   submit: PropTypes.func.isRequired
 };
 
-export default SignUpForm;
+export default EditUserForm;

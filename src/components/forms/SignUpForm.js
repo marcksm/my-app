@@ -53,7 +53,7 @@ class SignUpForm extends React.Component {
     if (Validator.isEmpty(data.personal_phone)|| !Validator.isNumeric(data.personal_phone)) {
       errors.personal_phone = "Invalid phone number."
     }
-    if (!data.password) {
+    if (!data.password || !data.password_confirmation ) {
       errors.password = "Password can't be blank.";
     }
     else if (!Validator.equals(data.password, data.password_confirmation)) {

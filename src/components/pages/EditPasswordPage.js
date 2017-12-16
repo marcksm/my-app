@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import EditUserForm from '../forms/EditUserForm'
+import EditPasswordForm from '../forms/EditPasswordForm'
 //import { Route } from 'react-router-dom';
 
-class EditUserPage extends React.Component {
+class EditPasswordPage extends React.Component {
 
   submit = data => {
     console.log(data);
@@ -12,12 +12,9 @@ class EditUserPage extends React.Component {
   render() {
     return (
       <div>
-        <h1>Edit User</h1>
-        <EditUserForm submit={this.submit} />
-
+        <h1>Edit Password</h1>
+        <EditPasswordForm submit={this.submit} />
         <Link to="/user" class="ui primary button">Back
-        </Link>
-        <Link to="/login" class="ui primary button">Delete User
         </Link>
       </div>
     );
@@ -25,4 +22,4 @@ class EditUserPage extends React.Component {
 }
 
 
-export default EditUserPage;
+export default EditPasswordPage;
