@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import LoginForm from '../forms/LoginForm';
-import {Form, Button } from 'semantic-ui-react';
 
 class LoginPage extends React.Component {
   submit = data => {
