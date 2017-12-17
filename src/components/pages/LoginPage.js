@@ -6,8 +6,16 @@ import { connect } from 'react-redux';
 import { login } from '../../actions/authenticate'
 
 class LoginPage extends React.Component {
+  onSetResult = (data) => {
+    console.log(data)
+    this.setState({
+      user: data
+    })
+  }
   submit = data =>
-    this.props.login(data).then(() => this.props.history.push("/user"));
+    this.props.login(data)
+    .then(() => this.props.history.push("/user"))
+    .then(console.log(data));
 
   render() {
 
