@@ -27,6 +27,5 @@ export const login = user_auth => dispatch =>
       .fetch(id)
       .then(user => {
         localStorage.Token = user.token;
-        localStorage.removeItem('Id');
         localStorage.Id = user.id;
       });

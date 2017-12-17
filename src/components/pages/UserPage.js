@@ -8,6 +8,12 @@ import axios from 'axios';
 
 const API = 'http://localhost:4000/api/users/';
 
+function logout2() {
+  localStorage.removeItem('Token');
+  localStorage.removeItem('Id');
+  window.location.reload();
+}
+
 class UserPage extends React.Component
 {
   constructor(props) {
@@ -39,7 +45,7 @@ render() {
       </Link><br/><br/>
       <Link to="/reset_password" class="ui primary button">Edit Password
       </Link><br/><br/>
-      <button onClick={() => logout()}class="ui primary button">Logout</button>
+      <button onClick={() => logout2()}class="ui primary button">Logout</button>
       <br/><br/>
 
       </div>
