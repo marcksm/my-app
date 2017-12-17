@@ -11,11 +11,11 @@ export const loggedout = () => ({
 
 export const login = user_auth => dispatch =>
  api.user.login(user_auth).then(user => {
-   localStorage.serverToken = user.token;
+   localStorage.Token = user.token;
    dispatch(loggedin(user));
  });
 
  export const logout = () => dispatch => {
-    localStorage.removeItem('serverToken');
+    localStorage.removeItem('Token');
     dispatch(loggedout());
   };

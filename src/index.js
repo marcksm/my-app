@@ -18,7 +18,7 @@ const store = createStore(
 
 if (localStorage.Token) {
   const user = {
-    token: localStorage.Token,
+    token: localStorage.Token
    };
   store.dispatch(loggedin(user));
 }
