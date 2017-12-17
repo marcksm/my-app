@@ -4,9 +4,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as actions from '../../actions/authenticate';
 import { fetchUserData } from "../../actions/authenticate";
-import axios from 'axios';
-
-const API = 'http://localhost:4000/api/users/';
 
 function logout2() {
   localStorage.removeItem('Token');
@@ -23,12 +20,13 @@ class UserPage extends React.Component
     user: {},
   };
 }
-
+    //axios.get(API + this.props.id)
+//  .then(res => res)
+//  .then(data => this.setState({ user: data.data.user }, console.log(data.data.user)));
     componentDidMount() {
-      axios.get(API + this.props.id)
-        .then(res => res)
-        .then(data => this.setState({ user: data.data.user }, console.log(data.data.user)));
+      this.props.fetchUserData(this.props.id).then(data => this.setState({ user: data }));
     }
+
 render() {
   const {isAuth} = this.props
   const { email, first_name, last_name, personal_phone, logout, id} = this.state.user

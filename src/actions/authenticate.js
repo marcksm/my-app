@@ -24,8 +24,4 @@ export const login = user_auth => dispatch =>
 
   export const fetchUserData = (id) => dispatch =>
     api.user
-      .fetch(id)
-      .then(user => {
-        localStorage.Token = user.token;
-        localStorage.Id = user.id;
-      });
+      .fetch(id);
