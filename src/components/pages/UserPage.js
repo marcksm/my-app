@@ -5,7 +5,11 @@ import PropTypes from 'prop-types';
 import * as actions from '../../actions/authenticate';
 
 
-const UserPage = ({isAuth, email, first_name, last_name, personal_phone, logout}) => (
+class UserPage extends React.Component
+{
+render() {
+   const {isAuth, email, first_name, last_name, personal_phone, logout, id} = this.props
+    return (
       <div>
       <div>
         <h1>Get User</h1>
@@ -13,7 +17,7 @@ const UserPage = ({isAuth, email, first_name, last_name, personal_phone, logout}
       <ul>{isAuth ? <button> Logout</button> : <button> ut</button>}</ul><hr/>
       <ul>{last_name}</ul><hr/>
       <ul>{email}</ul><hr/>
-      <ul>{personal_phone}</ul><hr/>
+      <ul>{id}</ul><hr/>
       <Link to="/edit" class="ui primary button">Edit User
       </Link><br/><br/>
       <Link to="/reset_password" class="ui primary button">Edit Password
@@ -22,7 +26,9 @@ const UserPage = ({isAuth, email, first_name, last_name, personal_phone, logout}
       <br/><br/>
 
       </div>
-);
+    );
+  }
+};
 
 UserPage.propTypes = {
   isAuth: PropTypes.bool.isRequired,
@@ -30,7 +36,8 @@ UserPage.propTypes = {
   first_name: PropTypes.string.isRequired,
   last_name: PropTypes.string.isRequired,
   personal_phone: PropTypes.string.isRequired,
-  logout: PropTypes.func.isRequired
+  logout: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired
 };
 
 function mapStateToProps (state) {
@@ -39,7 +46,8 @@ function mapStateToProps (state) {
     email: state.user.email,
     first_name: state.user.first_name,
     last_name: state.user.last_name,
-    personal_phone:state.user.personal_phone
+    personal_phone:state.user.personal_phone,
+    id: state.user.id
   };
 }
 
