@@ -21,3 +21,12 @@ export const login = user_auth => dispatch =>
     localStorage.removeItem('Id');
     dispatch(loggedout());
   };
+
+  export const fetchUserData = (id) => dispatch =>
+    api.user
+      .fetch(id)
+      .then(user => {
+        localStorage.Token = user.token;
+        localStorage.removeItem('Id');
+        localStorage.Id = user.id;
+      });

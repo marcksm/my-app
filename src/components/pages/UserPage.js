@@ -3,12 +3,29 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as actions from '../../actions/authenticate';
+import { fetchUserData } from "../../actions/authenticate";
+import axios from 'axios';
 
+const API = 'http://localhost:4000/api/users/';
 
 class UserPage extends React.Component
 {
+  constructor(props) {
+  super(props);
+
+  this.state = {
+    user: {},
+  };
+}
+
+    componentDidMount() {
+      axios.get(API + this.props.id)
+        .then(res => res)
+        .then(data => this.setState({ user: data.data.user }, console.log(data.data.user)));
+    }
 render() {
-   const {isAuth, email, first_name, last_name, personal_phone, logout, id} = this.props
+  const {isAuth} = this.props
+  const { email, first_name, last_name, personal_phone, logout, id} = this.state.user
     return (
       <div>
       <div>
@@ -31,6 +48,7 @@ render() {
 };
 
 UserPage.propTypes = {
+  fetchUserData: PropTypes.func.isRequired,
   isAuth: PropTypes.bool.isRequired,
   email: PropTypes.string.isRequired,
   first_name: PropTypes.string.isRequired,
@@ -51,4 +69,4 @@ function mapStateToProps (state) {
   };
 }
 
-export default connect(mapStateToProps, {logout: actions.logout})(UserPage);
+export default connect(mapStateToProps, {logout: actions.logout, fetchUserData })(UserPage);
