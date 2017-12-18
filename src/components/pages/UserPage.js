@@ -9,6 +9,7 @@ function logout2() {
   localStorage.removeItem('Token');
   localStorage.removeItem('Id');
   window.location.reload();
+  console.log(this.state);
 }
 
 class UserPage extends React.Component
@@ -20,10 +21,8 @@ class UserPage extends React.Component
     user: {},
   };
 }
-    //axios.get(API + this.props.id)
-//  .then(res => res)
-//  .then(data => this.setState({ user: data.data.user }, console.log(data.data.user)));
     componentDidMount() {
+      console.log(this.props.location.state)
       this.props.fetchUserData(this.props.id).then(data => this.setState({ user: data }));
     }
 
@@ -32,12 +31,30 @@ render() {
   const { email, first_name, last_name, personal_phone, logout, id} = this.state.user
     return (
       <div>
+      {this.state.success ? (<div>
+        <Message>{this.props.location.state}</Message>
+   </div>
+     )
+         : (<div></div>)}
       <div>
         <h1>Get User</h1>
       </div>
-      <ul>{last_name}</ul><hr/>
-      <ul>{email}</ul><hr/>
-      <ul>{id}</ul><hr/>
+
+      <div class="ui large message">
+      {email}
+      </div>
+
+      <div class="ui large message">
+      {first_name}
+      </div>
+
+      <div class="ui large message">
+      {last_name}
+      </div>
+
+      <div class="ui large message">
+      {personal_phone}
+      </div>
       <Link to="/edit" class="ui primary button">Edit User
       </Link><br/><br/>
       <Link to="/reset_password" class="ui primary button">Edit Password

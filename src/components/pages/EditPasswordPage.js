@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import EditPasswordForm from '../forms/EditPasswordForm'
 //import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -13,18 +13,24 @@ class EditPasswordPage extends React.Component {
      success: false
  };
   submit = data => {
-    console.log(data);
-    console.log(this.state)
-    console.log(this.props);
     this.props.editPassData(this.props.id, data)
-    .then(res => {this.setState({ success: true })});
+    .then(res => {this.setState({ success: true })})
+    .then(this.props.history.push({
+      pathname: '/user',
+        state: {
+          message: "Password has been reseted"
+        }
+      }));
   };
 
   render() {
     return (
       <div>
       <div>
-       {this.state.success ? (<Message>Password has been reseted</Message>)
+       {this.state.success ? (<div>
+         <Message>Password has been reseted</Message>
+    </div>
+      )
           : (<div></div>)}
 </div>
         <h1>Edit Password</h1>
