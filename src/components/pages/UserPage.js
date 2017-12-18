@@ -2,17 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import * as actions from '../../actions/authenticate';
+import {logout} from '../../actions/authenticate';
 import { fetchUserData } from "../../actions/authenticate";
 import {Message} from 'semantic-ui-react'
 import { Route, Redirect } from 'react-router';
-
-function logout2() {
-  localStorage.removeItem('Token');
-  localStorage.removeItem('Id');
-  window.location.reload();
-  console.log(this.state);
-}
 
 class UserPage extends React.Component
 {
@@ -31,13 +24,10 @@ class UserPage extends React.Component
       setTimeout(() => {
       this.setState({loading: false});  }, 1);
     }
-  //{!id ? ( <Redirect to="/login"/>) :  (<div></div>) }
 render() {
   const {isAuth} = this.props
   const { email, first_name, last_name, personal_phone, logout, id} = this.state.user
-
   if (this.state.loading) {
-
     return (<div><h1>Wait</h1></div>)
   }
   else {
@@ -53,26 +43,26 @@ render() {
         <h1>Get User</h1>
       </div>
 
-      <div class="ui large message">
+      <div className="ui large message">
       {email}
       </div>
 
-      <div class="ui large message">
+      <div className="ui large message">
       {first_name}
       </div>
 
-      <div class="ui large message">
+      <div className="ui large message">
       {last_name}
       </div>
 
-      <div class="ui large message">
+      <div className="ui large message">
       {personal_phone}
       </div>
-      <Link to="/edit" class="ui primary button">Edit User
+      <Link to="/edit" className="ui primary button">Edit User
       </Link><br/><br/>
-      <Link to="/reset_password" class="ui primary button">Edit Password
+      <Link to="/reset_password" className="ui primary button">Edit Password
       </Link><br/><br/>
-      <button onClick={() => logout2()}class="ui primary button">Logout</button>
+      <button onClick={this.props.logout} className="ui primary button">Logout</button>
       <br/><br/>
 
       </div>
@@ -102,4 +92,4 @@ function mapStateToProps (state) {
   };
 }
 
-export default connect(mapStateToProps, {logout: actions.logout, fetchUserData })(UserPage);
+export default connect(mapStateToProps, {logout, fetchUserData })(UserPage);

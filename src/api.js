@@ -12,6 +12,8 @@ export default {
     reset_p: (id, password) =>
       axios.put ('/api/users/' + id, password).then(res =>res.data.user),
     new: (body) =>
-      axios.post('/api/users', body)
+      axios.post('/api/users', body),
+    del_user: (id) =>
+      axios.delete('/api/users/'+ id).then(res =>res.data.user),
   }
 };

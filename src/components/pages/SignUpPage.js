@@ -24,10 +24,10 @@ class SignUpPage extends React.Component {
       localStorage.Id = res.data.user.id;
       localStorage.Token = res.data.user.token;
       setTimeout(() => {
-      this.setState({loading: false}); }, 1);
+      this.setState({loading: false}); }, 50);
     })
-    //.done(() => this.props.history.push("/user"))
     .then(this.setState({ success: true }))
+    .then(() => this.props.history.push("/user"))
     .catch(ress=> {this.setState({ error: true })})
   };
 
@@ -36,7 +36,7 @@ class SignUpPage extends React.Component {
 
       <div>
         <h1>SignUp Page</h1>
-        {!this.state.loading ? ( <Redirect to="/user"/>)
+        {!this.state.loading ? ( <div></div>)
            : (<div></div>)}
 
         {this.state.error ? (<Message>Failed - Email or phone already in use</Message>)
