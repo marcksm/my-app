@@ -4,7 +4,7 @@ import SignUpForm from '../forms/SignUpForm'
 import {Message} from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { newUser } from "../../actions/authenticate";
-
+import { login } from '../../actions/authenticate'
 
 class SignUpPage extends React.Component {
   state = {
@@ -15,15 +15,9 @@ class SignUpPage extends React.Component {
 
   submit = data => {
     console.log(data);
+    console.log(this.props)
     this.props.newUser(data)
-    .then(res => {
-      localStorage.Id = res.data.user.id;
-      localStorage.Token = res.data.user.token;
-      setTimeout(() => {
-      this.setState({loading: false}); }, 50);
-    })
-    .then(this.setState({ success: true }))
-    .then(() => this.props.history.push("/user"))
+    .then(res => {this.props.login(data)})
     .catch(ress=> {this.setState({ error: true })})
   };
 
@@ -55,4 +49,4 @@ function mapStateToProps (state) {
   };
 }
 
-export default connect(mapStateToProps, {newUser} )(SignUpPage);
+export default connect(mapStateToProps, {newUser, login} )(SignUpPage);
