@@ -25,3 +25,11 @@ export const login = user_auth => dispatch =>
   export const fetchUserData = (id) => dispatch =>
     api.user
       .fetch(id);
+
+  export const editUserData = (id, body) => dispatch =>
+    api.user
+      .edit(id, body);
+
+  export const editPassData = (id, password) => dispatch =>
+    api.user
+    .reset_p(id, password);

@@ -35,7 +35,6 @@ render() {
       <div>
         <h1>Get User</h1>
       </div>
-      <ul>{isAuth ? <button> Logout</button> : <button> ut</button>}</ul><hr/>
       <ul>{last_name}</ul><hr/>
       <ul>{email}</ul><hr/>
       <ul>{id}</ul><hr/>
