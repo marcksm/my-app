@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import * as actions from '../../actions/authenticate';
 import { fetchUserData } from "../../actions/authenticate";
 import {Message} from 'semantic-ui-react'
+import { Route, Redirect } from 'react-router';
 
 function logout2() {
   localStorage.removeItem('Token');
@@ -20,25 +21,34 @@ class UserPage extends React.Component
 
   this.state = {
     user: {},
-    success: false
+    success: false,
+    loading:true
   };
 }
     componentDidMount() {
-      console.log(this.props.location.state)
+      console.log(localStorage.Id)
       this.props.fetchUserData(localStorage.Id).then(data => this.setState({ user: data }));
+      setTimeout(() => {
+      this.setState({loading: false});  }, 1);
     }
-
+  //{!id ? ( <Redirect to="/login"/>) :  (<div></div>) }
 render() {
   const {isAuth} = this.props
   const { email, first_name, last_name, personal_phone, logout, id} = this.state.user
+
+  if (this.state.loading) {
+
+    return (<div><h1>Wait</h1></div>)
+  }
+  else {
     return (
       <div>
-      {this.props.location.state ? (<div>
-        <Message>{this.props.location.state.message}</Message>
-
-   </div>
-     )
-         : (<div></div>)}
+       {this.props.location.state ?
+         (<div>
+        <Message>{this.props.location.state.message}</Message></div>
+          )
+         : (<div></div>)
+       }
       <div>
         <h1>Get User</h1>
       </div>
@@ -67,7 +77,7 @@ render() {
 
       </div>
     );
-  }
+  }}
 };
 
 UserPage.propTypes = {

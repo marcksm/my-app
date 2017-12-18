@@ -66,7 +66,7 @@ class SignUpForm extends React.Component {
   };
 
   render() {
-    const {data, errors} = this.state;
+    const {data, errors, loading} = this.state;
     return (
       <div>
       <Form onSubmit={this.onSubmit}>

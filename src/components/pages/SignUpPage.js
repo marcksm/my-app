@@ -11,7 +11,8 @@ import { Route, Redirect } from 'react-router';
 class SignUpPage extends React.Component {
   state = {
      success: false,
-     error: false
+     error: false,
+     loading: true
  };
 
 
@@ -22,17 +23,20 @@ class SignUpPage extends React.Component {
     .then(res => {
       localStorage.Id = res.data.user.id;
       localStorage.Token = res.data.user.token;
-
+      setTimeout(() => {
+      this.setState({loading: false}); }, 1);
     })
+    //.done(() => this.props.history.push("/user"))
     .then(this.setState({ success: true }))
     .catch(ress=> {this.setState({ error: true })})
   };
 
   render() {
     return (
+
       <div>
         <h1>SignUp Page</h1>
-        {this.state.success ? ( <Redirect to="/user"/>)
+        {!this.state.loading ? ( <Redirect to="/user"/>)
            : (<div></div>)}
 
         {this.state.error ? (<Message>Failed - Email or phone already in use</Message>)
