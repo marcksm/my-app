@@ -10,6 +10,8 @@ export default {
     edit: (id, body) =>
       axios.put('/api/users/' + id, body).then(res => res.data.user),
     reset_p: (id, password) =>
-      axios.put ('/api/users/' + id, password).then(res =>res.data.user)
+      axios.put ('/api/users/' + id, password).then(res =>res.data.user),
+    new: (body) =>
+      axios.post('/api/users', body)
   }
 };

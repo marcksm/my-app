@@ -4,24 +4,28 @@ import EditUserForm from '../forms/EditUserForm'
 //import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/authenticate';
+import { Route, Redirect } from 'react-router'
 import { editUserData } from "../../actions/authenticate";
 import {Message} from 'semantic-ui-react'
 
 class EditUserPage extends React.Component {
   state = {
-     success: false
+     success: false,
+     error: false
  };
   submit = data => {
     this.props.editUserData(this.props.id, data)
-    .then(res => {this.setState({ success: true })});
+    .then(() =>this.props.history.push("/user"))
+    .catch(res=> {this.setState({ error: true })})
   };
 
   render() {
     return (
       <div>
         <h1>Edit User</h1>
-        {this.state.success ? (<Message>User info has been edited</Message>)
+        {this.state.error ? (<Message>Failed - Email or phone already in use</Message>)
            : (<div></div>)}
+
         <EditUserForm submit={this.submit} />
 
         <Link to="/user" class="ui primary button">Back

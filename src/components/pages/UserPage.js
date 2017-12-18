@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as actions from '../../actions/authenticate';
 import { fetchUserData } from "../../actions/authenticate";
+import {Message} from 'semantic-ui-react'
 
 function logout2() {
   localStorage.removeItem('Token');
@@ -19,11 +20,12 @@ class UserPage extends React.Component
 
   this.state = {
     user: {},
+    success: false
   };
 }
     componentDidMount() {
       console.log(this.props.location.state)
-      this.props.fetchUserData(this.props.id).then(data => this.setState({ user: data }));
+      this.props.fetchUserData(localStorage.Id).then(data => this.setState({ user: data }));
     }
 
 render() {
@@ -31,8 +33,9 @@ render() {
   const { email, first_name, last_name, personal_phone, logout, id} = this.state.user
     return (
       <div>
-      {this.state.success ? (<div>
-        <Message>{this.props.location.state}</Message>
+      {this.props.location.state ? (<div>
+        <Message>{this.props.location.state.message}</Message>
+
    </div>
      )
          : (<div></div>)}

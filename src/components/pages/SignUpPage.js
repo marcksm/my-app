@@ -1,18 +1,42 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import SignUpForm from '../forms/SignUpForm'
+import {Message} from 'semantic-ui-react'
 //import { Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { newUser } from "../../actions/authenticate";
+import { login } from '../../actions/authenticate'
+import { Route, Redirect } from 'react-router';
 
 class SignUpPage extends React.Component {
+  state = {
+     success: false,
+     error: false
+ };
+
+
 
   submit = data => {
     console.log(data);
+    this.props.newUser(data)
+    .then(res => {
+      localStorage.Id = res.data.user.id;
+      localStorage.Token = res.data.user.token;
+
+    })
+    .then(this.setState({ success: true }))
+    .catch(ress=> {this.setState({ error: true })})
   };
 
   render() {
     return (
       <div>
         <h1>SignUp Page</h1>
+        {this.state.success ? ( <Redirect to="/user"/>)
+           : (<div></div>)}
+
+        {this.state.error ? (<Message>Failed - Email or phone already in use</Message>)
+           : (<div></div>)}
         <SignUpForm submit={this.submit} />
         <Link to="/login" class="ui primary button">Back
         </Link>
@@ -21,5 +45,16 @@ class SignUpPage extends React.Component {
   }
 }
 
+function mapStateToProps (state) {
+  return {
+    isAuth: !!state.user.token,
+    email: state.user.email,
+    first_name: state.user.first_name,
+    last_name: state.user.last_name,
+    personal_phone:state.user.personal_phone,
+    id: state.user.id
+  };
+}
 
-export default SignUpPage;
+export default connect(mapStateToProps, {newUser} )(SignUpPage);
+//export default SignUpPage;

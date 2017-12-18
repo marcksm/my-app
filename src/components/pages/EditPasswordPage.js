@@ -10,25 +10,27 @@ import {Message} from 'semantic-ui-react'
 class EditPasswordPage extends React.Component {
 
   state = {
-     success: false
+     success: false,
+     error: false
  };
   submit = data => {
     this.props.editPassData(this.props.id, data)
-    .then(res => {this.setState({ success: true })})
-    .then(this.props.history.push({
-      pathname: '/user',
-        state: {
-          message: "Password has been reseted"
-        }
-      }));
+    .then(() => this.props.history.push("/user"))
+    .catch(res=> {this.setState({ error: true })})
+    // .then(this.props.history.push({
+    //   pathname: '/user',
+    //     state: {
+    //       message: "Password has been reseted"
+    //     }
+    //   }));
   };
 
   render() {
     return (
       <div>
       <div>
-       {this.state.success ? (<div>
-         <Message>Password has been reseted</Message>
+       {this.state.error ? (<div>
+         <Message>Failed - the password you entered is wrong</Message>
     </div>
       )
           : (<div></div>)}

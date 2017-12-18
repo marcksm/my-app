@@ -33,3 +33,7 @@ export const login = user_auth => dispatch =>
   export const editPassData = (id, password) => dispatch =>
     api.user
     .reset_p(id, password);
+    
+  export const newUser = (id, body) => dispatch =>
+    api.user
+      .new(id, body);
