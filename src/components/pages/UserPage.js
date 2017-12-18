@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import {logout} from '../../actions/authenticate';
 import { fetchUserData } from "../../actions/authenticate";
 import {Message} from 'semantic-ui-react'
-import { Route, Redirect } from 'react-router';
+
 
 class UserPage extends React.Component
 {
@@ -25,8 +25,7 @@ class UserPage extends React.Component
       this.setState({loading: false});  }, 1);
     }
 render() {
-  const {isAuth} = this.props
-  const { email, first_name, last_name, personal_phone, logout, id} = this.state.user
+  const { email, first_name, last_name, personal_phone} = this.state.user
   if (this.state.loading) {
     return (<div><h1>Wait</h1></div>)
   }

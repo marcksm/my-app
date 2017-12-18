@@ -2,20 +2,16 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import SignUpForm from '../forms/SignUpForm'
 import {Message} from 'semantic-ui-react'
-//import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { newUser } from "../../actions/authenticate";
-import { login } from '../../actions/authenticate'
-import { Route, Redirect } from 'react-router';
+
 
 class SignUpPage extends React.Component {
   state = {
      success: false,
      error: false,
      loading: true
- };
-
-
+  };
 
   submit = data => {
     console.log(data);
@@ -33,7 +29,6 @@ class SignUpPage extends React.Component {
 
   render() {
     return (
-
       <div>
         <h1>SignUp Page</h1>
         {!this.state.loading ? ( <div></div>)
@@ -61,4 +56,3 @@ function mapStateToProps (state) {
 }
 
 export default connect(mapStateToProps, {newUser} )(SignUpPage);
-//export default SignUpPage;

@@ -1,9 +1,7 @@
 import React from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import EditPasswordForm from '../forms/EditPasswordForm'
-//import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import * as actions from '../../actions/authenticate';
 import { editPassData } from "../../actions/authenticate";
 import {Message} from 'semantic-ui-react'
 
@@ -17,12 +15,6 @@ class EditPasswordPage extends React.Component {
     this.props.editPassData(this.props.id, data)
     .then(() => this.props.history.push("/user"))
     .catch(res=> {this.setState({ error: true })})
-    // .then(this.props.history.push({
-    //   pathname: '/user',
-    //     state: {
-    //       message: "Password has been reseted"
-    //     }
-    //   }));
   };
 
   render() {

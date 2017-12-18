@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom'
 import EditUserForm from '../forms/EditUserForm'
 //import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import * as actions from '../../actions/authenticate';
-import { Route, Redirect } from 'react-router'
+import { Redirect } from 'react-router'
 import { editUserData } from "../../actions/authenticate";
 import { userDelete } from "../../actions/authenticate";
 import { logout } from "../../actions/authenticate";

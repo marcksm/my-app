@@ -3,9 +3,6 @@ import {Form, Button } from 'semantic-ui-react';
 import InlineError from '../messages/InlineError';
 import PropTypes from 'prop-types';
 import Validator from 'validator';
-//import Phone from 'react-phone-number-input'
-//import rrui from 'react-phone-number-input/rrui.css'
-//import rpni from 'react-phone-number-input/style.css'
 
 class SignUpForm extends React.Component {
   state = {
@@ -66,7 +63,7 @@ class SignUpForm extends React.Component {
   };
 
   render() {
-    const {data, errors, loading} = this.state;
+    const {data, errors} = this.state;
     return (
       <div>
       <Form onSubmit={this.onSubmit}>
