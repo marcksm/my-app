@@ -43,19 +43,19 @@ render() {
       </div>
 
       <div className="ui large message">
-      {email}
+      {email ? (email):(<div class="ui active inline loader"></div>)}
       </div>
 
       <div className="ui large message">
-      {first_name}
+      {first_name ? (first_name):(<div class="ui active inline loader"></div>)}
       </div>
 
       <div className="ui large message">
-      {last_name}
+      {last_name ?  (first_name):(<div class="ui active inline loader"></div>)}
       </div>
 
       <div className="ui large message">
-      {personal_phone}
+      {personal_phone ? (personal_phone):(<div class="ui active inline loader"></div>)}
       </div>
       <Link to="/edit" className="ui primary button">Edit User
       </Link><br/><br/>
