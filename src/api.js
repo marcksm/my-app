@@ -1,19 +1,61 @@
 
 import axios from 'axios';
 
+
 export default {
   user: {
     login: user_auth =>
-      axios.post('/api/authenticate', { user_auth }).then(res => res.data.user),
+      axios.post('/api/authenticate', {user_auth}).then(res => res.data.user),
     fetch: id =>
-      axios.get('/api/users/' + id).then(res => res.data.user),
+      axios({
+        method: 'GET',
+        url:'/api/users/' + id,
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        auth: {
+          username: process.env.REACT_APP_API_USER,
+          password: process.env.REACT_APP_API_PASS
+          }
+        }).then(res => res.data.user),
     edit: (id, body) =>
-      axios.put('/api/users/' + id, body).then(res => res.data.user),
-    reset_p: (id, password) =>
-      axios.put ('/api/users/' + id, password).then(res =>res.data.user),
+      axios({
+        method: 'PUT',
+        url:'/api/users/' + id +'/edit',
+        auth: {
+          username: process.env.REACT_APP_API_USER,
+          password: process.env.REACT_APP_API_PASS
+        },
+        data: body
+      }).then(res => res.data.user),
+    reset_p: (id, body) =>
+      axios({
+        method: 'PUT',
+        url: '/api/users/' + id + '/reset_password',
+        auth: {
+          username: process.env.REACT_APP_API_USER,
+          password: process.env.REACT_APP_API_PASS
+          },
+          data: body
+      }).then(res =>res.data.user),
     new: (body) =>
-      axios.post('/api/users', body),
+      axios({
+        method: 'POST',
+        url:'/api/users',
+        auth: {
+          username: process.env.REACT_APP_API_USER,
+          password: process.env.REACT_APP_API_PASS
+        },
+        data: body
+      }),
     del_user: (id) =>
-      axios.delete('/api/users/'+ id).then(res =>res.data.user),
+      axios({
+        method: 'DELETE',
+        url:'/api/users/'+ id,
+        auth: {
+          username: process.env.REACT_APP_API_USER,
+          password: process.env.REACT_APP_API_PASS
+          }
+      }).then(res =>res.data.user),
   }
 };

@@ -7,6 +7,8 @@ import UserPage from './components/pages/UserPage'
 import UserRoute from './components/routes/UserRoute'
 import NotLogRoute from './components/routes/NotLogRoute'
 import PropTypes from 'prop-types'
+
+
 const App = ({location}) => (
 <div className="ui container">
  <NotLogRoute location = {location} path="/"  exact component={ LoginPage }/>
