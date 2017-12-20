@@ -4,8 +4,19 @@ import axios from 'axios';
 
 export default {
   user: {
-    login: user_auth =>
-      axios.post('/api/authenticate', {user_auth}).then(res => res.data.user),
+    login: (body) =>
+      axios({
+        method: 'POST',
+        url: 'api/authenticate',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        auth: {
+          username: process.env.REACT_APP_API_USER,
+          password: process.env.REACT_APP_API_PASS
+        },
+        data: body
+      }).then(res => res.data.user),
     fetch: id =>
       axios({
         method: 'GET',

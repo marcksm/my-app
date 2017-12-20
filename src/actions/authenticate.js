@@ -39,5 +39,4 @@ export const login = user_auth => dispatch =>
       .new(body);
 
   export const userDelete = (id) => dispatch =>
-    api.user
-    .del_user(id);
+    api.user.del_user(id);
