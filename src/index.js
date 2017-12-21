@@ -12,6 +12,7 @@ import rootReducer from './rootReducer';
 import { loggedin } from './actions/authenticate'
 import dotenv from 'dotenv';
 
+
 dotenv.config();
 
 const store = createStore(
