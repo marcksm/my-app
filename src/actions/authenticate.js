@@ -2,41 +2,39 @@ import { USER_LOGGED_IN, USER_LOGGED_OUT } from '../types';
 import api from '../api';
 
 export const loggedin = user => ({
-  type: USER_LOGGED_IN,
-  user
+	type: USER_LOGGED_IN,
+	user
 });
 export const loggedout = () => ({
-  type: USER_LOGGED_OUT
+	type: USER_LOGGED_OUT
 });
 
 export const login = user_auth => dispatch =>
- api.user.login(user_auth).then(user => {
-   localStorage.Token = user.token;
-   localStorage.Id = user.id;
-   dispatch(loggedin(user));
- });
+	api.user.login(user_auth).then(user => {
+	 localStorage.Token = user.token;
+	 localStorage.Id = user.id;
+	 dispatch(loggedin(user));
+ 	});
 
- export const logout = () => dispatch => {
-    localStorage.removeItem('Token');
-    localStorage.removeItem('Id');
-    dispatch(loggedout());
-  };
+export const logout = () => dispatch => {
+	localStorage.removeItem('Token');
+	localStorage.removeItem('Id');
+	dispatch(loggedout());
+};
 
-  export const fetchUserData = (id) => dispatch =>
-    api.user
-      .fetch(id);
+export const fetchUserData = (id) => dispatch =>
+	api.user
+		.fetch(id);
+export const editUserData = (id, body) => dispatch =>
+	api.user
+		.edit(id, body);
+export const editPassData = (id, password) => dispatch =>
+	api.user
+		.reset_p(id, password);
 
-  export const editUserData = (id, body) => dispatch =>
-    api.user
-      .edit(id, body);
+export const newUser = (body) => dispatch =>
+	api.user
+		.new(body);
 
-  export const editPassData = (id, password) => dispatch =>
-    api.user
-    .reset_p(id, password);
-
-  export const newUser = (body) => dispatch =>
-    api.user
-      .new(body);
-
-  export const userDelete = (id) => dispatch =>
-    api.user.del_user(id);
+export const userDelete = (id) => dispatch =>
+	api.user.del_user(id);
