@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import UserRoute from './src/App';
+import EditPasswordPage from '../src/components/pages/EditPasswordPage';
 
 it('renders without crashing', () => {
-	const div = document.createElement('div');
-	ReactDOM.render(<UserRoute/>, div);
+	const component = shallow(
+		<EditPasswordPage />
+	);
+	expect(component).toHaveLength(1);
 });
