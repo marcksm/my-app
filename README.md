@@ -8,7 +8,7 @@ This App uses REST API in https://github.com/marcksm/rest-api (http://35.227.122
 
 ## Demo
 
-Check out demo deployed in Google Cloud Computer Engine of the API on the link below:
+Check out demo deployed in Google Cloud Computer Engine of the App on the link below:
 
 http://35.227.122.182:3000/
 
