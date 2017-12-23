@@ -4,6 +4,8 @@ This is a React App for my application in theVelops following their criteria.
 
 It mainly uses react, redux, axios (to connect to API) and semantic ui.
 
+This App uses REST API in https://github.com/marcksm/rest-api (http://35.227.122.182:4000)
+
 ## Demo
 
 Check out demo deployed in Google Cloud Computer Engine of the API on the link below:
