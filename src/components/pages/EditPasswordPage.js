@@ -4,6 +4,7 @@ import EditPasswordForm from '../forms/EditPasswordForm';
 import { connect } from 'react-redux';
 import { editPassData } from "../../actions/authenticate";
 import {Message} from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 
 class EditPasswordPage extends React.Component {
 
@@ -34,6 +35,14 @@ class EditPasswordPage extends React.Component {
 		);
 	}
 }
+
+EditPasswordPage.propTypes = {
+	editPassData: PropTypes.func.isRequired,
+	history: PropTypes.shape({
+	 push: PropTypes.func.isRequired
+	}).isRequired
+};
+
 function mapStateToProps (state) {
 	return {
 		isAuth: !!state.user.token,

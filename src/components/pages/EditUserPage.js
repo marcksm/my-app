@@ -56,7 +56,11 @@ class EditUserPage extends React.Component {
 }
 
 EditUserPage.propTypes = {
-	userDelete: PropTypes.func.isRequired
+	history: PropTypes.shape({
+		push: PropTypes.func.isRequired
+	}).isRequired,
+	userDelete: PropTypes.func.isRequired,
+	editUserData: PropTypes.func.isRequired
 };
 
 function mapStateToProps (state) {

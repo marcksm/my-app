@@ -4,7 +4,7 @@ import InlineError from '../messages/InlineError';
 import PropTypes from 'prop-types';
 import Validator from 'validator';
 
-class LoginForm extends React.Component {
+export class LoginForm extends React.Component {
 	state = {
 		data: {
 			email: '',
@@ -89,7 +89,8 @@ class LoginForm extends React.Component {
 }
 
 LoginForm.propTypes = {
-	submit: PropTypes.func.isRequired
+	submit: PropTypes.func.isRequired,
+	test: PropTypes.string.isRequired
 };
 
 export default LoginForm;

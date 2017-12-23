@@ -5,6 +5,7 @@ import {Message} from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { newUser } from "../../actions/authenticate";
 import { login } from '../../actions/authenticate';
+import PropTypes from 'prop-types';
 
 class SignUpPage extends React.Component {
 	state = {
@@ -35,6 +36,11 @@ class SignUpPage extends React.Component {
 		);
 	}
 }
+
+SignUpPage.propTypes = {
+	newUser: PropTypes.func.isRequired,
+	login: PropTypes.func.isRequired
+};
 
 function mapStateToProps (state) {
 	return {

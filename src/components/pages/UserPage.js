@@ -7,7 +7,7 @@ import { fetchUserData } from "../../actions/authenticate";
 import {Message} from 'semantic-ui-react';
 
 
-class UserPage extends React.Component {
+export class UserPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
