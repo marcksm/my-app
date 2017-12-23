@@ -38,3 +38,10 @@ Inside the my-app folder:
 npm start
 ```
 You should open http://localhost:3000
+
+## Running tests via NPM
+
+Inside the rest-api folder
+```
+npm test
+```
